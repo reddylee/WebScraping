@@ -1,0 +1,51 @@
+---
+title: "ic2s2"
+format: html
+editor: visual
+---
+
+```{r}
+# library(rvest)
+# library(tidyverse)
+```
+
+```{r}
+html <- read_html("https://www.ic2s2.org/program.html")
+sessions <- html %>% 
+  html_elements(".nav_list")
+sessions 
+
+talks <- sessions %>% 
+  html_elements("li") 
+
+talks_list <- talks %>% 
+  html_elements("b") %>% 
+  html_text()
+
+talks_list
+
+talks_speaker <- talks %>% 
+  html_elements("u") %>% 
+  html_text()
+
+talks_speaker
+
+talks_authors <- talks %>% 
+  html_elements("i") %>% 
+  html_text() %>% 
+  strsplit()
+
+talks_authors
+```
+
+
+```{r}
+talks <- sessions %>% 
+  html_elements("li")
+
+
+x <- talks[[1]]
+
+parse_talks
+```
+
